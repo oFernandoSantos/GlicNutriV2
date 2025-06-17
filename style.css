@@ -1,3 +1,4 @@
+
 /* === Resets Básicos e Padrões Globais === */
 *,
 *::before,
@@ -206,14 +207,14 @@ button:active, .button-link:active {
 .form-container h2 {
     text-align: center;
     margin-bottom: 1.5em;
-    ctext-align: center;
-  font-weight: 700;
-  /* Novas propriedades para o gradiente no texto */
-  background: linear-gradient(145deg, #7F00FF, #E100FF);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-fill-color: transparent; /* Para navegadores que não usam o prefixo -webkit- */
+    text-align: center;
+    font-weight: 700;
+    /* Novas propriedades para o gradiente no texto */
+    background: linear-gradient(145deg, #7F00FF, #E100FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent; /* Para navegadores que não usam o prefixo -webkit- */
     font-weight: 700;
 }
 
