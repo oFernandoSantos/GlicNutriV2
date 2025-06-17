@@ -43,7 +43,7 @@
   <footer>
      <p>&copy; 2025 GlicNutri • Todos os direitos reservados</p>
   </footer>
-
+<div style="align-self: flex-start; background-color: black; padding: 0.8em 1em; border-radius: 12px;">
   <script>
     function enviarMensagem() {
       const input = document.getElementById("userInput");
@@ -74,7 +74,7 @@
         chatBox.scrollTop = chatBox.scrollHeight;
       }, 800);
     }
- <div style="align-self: flex-start; background-color: black; padding: 0.8em 1em; border-radius: 12px;">
+ 
     function gerarRespostaSimples(texto) {
       const lower = texto.toLowerCase();
       if (lower.includes("glicemia")) return "Lembre-se de medir sua glicemia antes e depois das refeições.";
