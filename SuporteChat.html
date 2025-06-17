@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Suporte / Chat - GlicNutri</title>
+  <link rel="icon" href="GlicNutri2.png" type="image/png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header-voltar">
+  <a href="glicnutri.html" class="btn-voltar-header" title="Voltar">
+    <
+  </a>
+    <h1>Suporte / Chat</h1>
+  </header>
+
+  <main>
+    <div style="width: 100%; max-width: 600px;">
+      <div id="chatBox" style="background: #fff; padding: 1em; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-height: 300px; overflow-y: auto; display: flex; flex-direction: column; gap: 0.8em;">
+        <div style="align-self: flex-start; background-color: #f3f3f3; padding: 0.8em 1em; border-radius: 12px;">
+          Olá! 👋 Sou o NutriBot. Como posso te ajudar hoje?
+        </div>
+      </div>
+
+      <div style="margin-top: 1em; display: flex; gap: 0.5em;">
+        <input type="text" id="userInput" placeholder="Digite sua mensagem..." />
+        <button onclick="enviarMensagem()">Enviar</button>
+      </div>
+    </div>
+
+    <!-- Botão centralizado no final da página -->
+    
+  </main>
+
+ <div class="nav-buttons">
+      <a href="glicnutri.html"><button>Voltar ao Menu</button></a>
+    </div>
+	  <br>
+  <footer>
+     <p>&copy; 2025 GlicNutri • Todos os direitos reservados</p>
+  </footer>
+
+  <script>
+    function enviarMensagem() {
+      const input = document.getElementById("userInput");
+      const texto = input.value.trim();
+      if (!texto) return;
+
+      const chatBox = document.getElementById("chatBox");
+
+      const msgUser = document.createElement("div");
+      msgUser.style.alignSelf = "flex-end";
+      msgUser.style.backgroundColor = "#e0e0ff";
+      msgUser.style.padding = "0.8em 1em";
+      msgUser.style.borderRadius = "12px";
+      msgUser.textContent = texto;
+      chatBox.appendChild(msgUser);
+
+      input.value = "";
+
+      setTimeout(() => {
+        const resposta = gerarRespostaSimples(texto);
+        const msgBot = document.createElement("div");
+        msgBot.style.alignSelf = "flex-start";
+        msgBot.style.backgroundColor = "#f3f3f3";
+        msgBot.style.padding = "0.8em 1em";
+        msgBot.style.borderRadius = "12px";
+        msgBot.textContent = resposta;
+        chatBox.appendChild(msgBot);
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }, 800);
+    }
+
+    function gerarRespostaSimples(texto) {
+      const lower = texto.toLowerCase();
+      if (lower.includes("glicemia")) return "Lembre-se de medir sua glicemia antes e depois das refeições.";
+      if (lower.includes("alimentação")) return "Uma alimentação equilibrada com baixo índice glicêmico é ideal.";
+      if (lower.includes("oi") || lower.includes("olá")) return "Olá! Estou aqui para te ajudar no que precisar.";
+      if (lower.includes("insulina")) return "Consulte seu endocrinologista para ajustes de insulina.";
+      return "Obrigado pela sua mensagem! Em breve um nutricionista real poderá responder também. 😊";
+    }
+  </script>
+</body>
+</html>

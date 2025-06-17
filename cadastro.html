@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro - GlicNutri</title>
+  <link rel="stylesheet" href="style.css" /> <link rel="icon" href="GlicNutri2.png" type="image/png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <header class="simple-header">
+    <h1>Crie sua Conta</h1>
+  </header>
+
+  <main>
+    <form class="form-container" onsubmit="salvarCadastro(event)">
+      <div class="form-field">
+        <input type="text" id="nome" placeholder=" " required>
+        <label for="nome"><i class="fas fa-user"></i> Nome Completo</label>
+      </div>
+
+      <div class="form-field">
+        <input type="number" id="idade" placeholder=" " required min="1">
+        <label for="idade"><i class="fas fa-birthday-cake"></i> Idade</label>
+      </div>
+
+      <div class="form-field">
+        <input type="text" id="sangue" placeholder=" "> <label for="sangue"><i class="fas fa-tint"></i> Tipo Sanguíneo (Opcional)</label>
+      </div>
+
+      <div class="form-field">
+         <select id="diabete" required>
+            <option value="" disabled selected>Selecione o tipo</option>
+            <option value="Tipo 1">Tipo 1</option>
+            <option value="Tipo 2">Tipo 2</option>
+            <option value="Gestacional">Gestacional</option>
+            <option value="LADA">LADA</option>
+            <option value="MODY">MODY</option>
+            <option value="Não tenho">Não tenho / Outro</option>
+        </select>
+        <label for="diabete"><i class="fas fa-notes-medical"></i> Tipo de Diabetes</label>
+      </div>
+
+      <div class="form-field">
+        <input type="number" id="peso" placeholder=" " step="0.1" min="1">
+        <label for="peso"><i class="fas fa-weight"></i> Peso (kg) (Opcional)</label>
+      </div>
+
+      <div class="form-field">
+        <input type="number" id="altura" placeholder=" " min="1">
+        <label for="altura"><i class="fas fa-ruler-vertical"></i> Altura (cm) (Opcional)</label>
+      </div>
+
+      <div class="form-field">
+        <input type="email" id="email" placeholder=" " required>
+        <label for="email"><i class="fas fa-envelope"></i> Email</label>
+      </div>
+
+      <div class="form-field">
+        <input type="tel" id="telefone" placeholder=" ">
+        <label for="telefone"><i class="fas fa-phone"></i> Telefone (Opcional)</label>
+      </div>
+
+      <div class="form-field">
+        <input type="text" id="cpf" placeholder=" " required> <label for="cpf"><i class="fas fa-id-card"></i> CPF</label>
+      </div>
+
+      <div class="form-field">
+        <input type="password" id="senha" placeholder=" " required minlength="6">
+        <label for="senha"><i class="fas fa-lock"></i> Senha (mín. 6 caracteres)</label>
+      </div>
+
+      <div class="form-buttons">
+        <button type="submit"><i class="fas fa-check-circle"></i> Registrar agora</button>
+        <a href="login.html" class="button-link btn-secondary"><i class="fas fa-arrow-left"></i> Voltar para Login</a>
+      </div>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 GlicNutri</p>
+  </footer>
+
+  <script>
+    function salvarCadastro(e) {
+      e.preventDefault();
+
+      // Validação básica (poderia ser mais robusta)
+      const nome = document.getElementById("nome").value;
+      const email = document.getElementById("email").value;
+      const cpf = document.getElementById("cpf").value;
+      const senha = document.getElementById("senha").value;
+
+      if (!nome || !email || !cpf || !senha) {
+          alert("Por favor, preencha todos os campos obrigatórios.");
+          return;
+      }
+      if (senha.length < 6) {
+          alert("A senha deve ter no mínimo 6 caracteres.");
+          return;
+      }
+
+
+      const usuario = {
+        nome: nome,
+        idade: document.getElementById("idade").value,
+        sangue: document.getElementById("sangue").value,
+        diabete: document.getElementById("diabete").value,
+        peso: document.getElementById("peso").value,
+        altura: document.getElementById("altura").value,
+        email: email,
+        telefone: document.getElementById("telefone").value,
+        cpf: cpf, // Idealmente, CPFs devem ser armazenados com hash ou criptografados
+        senha: senha, // NUNCA armazene senhas em texto plano. Use hashing (ex: bcrypt) no backend.
+                      // Para localStorage, isso é apenas um exemplo e NÃO é seguro para produção.
+      };
+
+      // AVISO DE SEGURANÇA: localStorage NÃO é seguro para dados sensíveis como senhas.
+      // Isto é apenas para fins de demonstração do front-end.
+      // Em uma aplicação real, os dados seriam enviados para um backend seguro via HTTPS.
+      localStorage.setItem("usuarioGlicNutri", JSON.stringify(usuario));
+      alert("Cadastro realizado com sucesso! Você será redirecionado para o login.");
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>

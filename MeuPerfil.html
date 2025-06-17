@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meu Perfil - GlicNutri</title>
+  <link rel="stylesheet" href="style.css" /> <link rel="icon" href="GlicNutri2.png" type="image/png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <script>
+    // Dark mode toggle (se mantido)
+    document.addEventListener("DOMContentLoaded", () => {
+      const darkMode = localStorage.getItem("darkMode") === "true";
+      document.body.classList.toggle("dark", darkMode);
+
+      const usuario = JSON.parse(localStorage.getItem("usuarioGlicNutri"));
+      const container = document.getElementById("perfil-data-container"); // Mudado o ID do container
+
+      if (!container) return; // Se o container não existir, não faz nada
+
+      if (!usuario) {
+        container.innerHTML = "<p style='text-align:center; color: #e74c3c; padding: 20px;'>Usuário não encontrado. Por favor, faça login novamente ou cadastre-se.</p>";
+        return;
+      }
+
+      // Usar as classes CSS globais para o perfil
+      container.innerHTML = `
+        <div class="perfil-container-card"> <div class="perfil-header">
+            <div class="perfil-inicial">${usuario.nome ? usuario.nome.charAt(0).toUpperCase() : '?'}</div>
+            <h2>${usuario.nome || 'Usuário'}</h2>
+            </div>
+            <div class="perfil-dados">
+            ${usuario.idade ? `<div class="perfil-item"><span><i class="fas fa-birthday-cake"></i> Idade:</span> <span>${usuario.idade} anos</span></div>` : ''}
+            ${usuario.sangue ? `<div class="perfil-item"><span><i class="fas fa-tint"></i> Tipo Sanguíneo:</span> <span>${usuario.sangue}</span></div>` : ''}
+            ${usuario.diabete ? `<div class="perfil-item"><span><i class="fas fa-notes-medical"></i> Tipo de Diabetes:</span> <span>${usuario.diabete}</span></div>` : ''}
+            ${usuario.peso ? `<div class="perfil-item"><span><i class="fas fa-weight"></i> Peso:</span> <span>${usuario.peso} kg</span></div>` : ''}
+            ${usuario.altura ? `<div class="perfil-item"><span><i class="fas fa-ruler-vertical"></i> Altura:</span> <span>${usuario.altura} cm</span></div>` : ''}
+            <div class="perfil-item"><span><i class="fas fa-envelope"></i> Email:</span> <span>${usuario.email}</span></div>
+            ${usuario.telefone ? `<div class="perfil-item"><span><i class="fas fa-phone"></i> Telefone:</span> <span>${usuario.telefone}</span></div>` : ''}
+            <div class="perfil-item"><span><i class="fas fa-id-card"></i> CPF:</span> <span>${usuario.cpf ? usuario.cpf.substring(0,3) + '.***.***-**' : 'Não informado'}</span></div>
+            </div>
+        </div>
+        `;
+        // CPF é mascarado para exibição por segurança básica (não substitui segurança real)
+    });
+  </script>
+</head>
+<body>
+  <header class="header-voltar">
+    <a href="glicnutri.html" class="btn-voltar-header" title="Voltar">
+      <i class="fas fa-arrow-left"></i>
+    </a>
+    <h1 class="header-title">Meu Perfil</h1>
+  </header>
+
+  <main>
+    <div id="perfil-data-container">
+        <p style="text-align:center; padding:20px; color: #777;">Carregando dados do perfil...</p>
+    </div>
+
+    <div class="nav-buttons-vertical" style="margin-top: 1.5em;">
+      <a href="glicnutri.html" class="button-link"><i class="fas fa-arrow-left"></i> Voltar ao Menu</a>
+    </div>
+  </main>
+
+  <footer>
+     <p>&copy; 2025 GlicNutri • Todos os direitos reservados</p>
+  </footer>
+</body>
+</html>

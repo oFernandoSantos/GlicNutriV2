@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="GlicNutri2.png" type="image/png" />
+  <title>Login - GlicNutri</title>
+  <link rel="stylesheet" href="style.css" /> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <header class="simple-header">
+    <h1>Login GlicNutri</h1>
+  </header>
+
+  <main>
+    <div class="logo-container" style="margin-top:1em; margin-bottom: 0.5em;">
+        <img src="GlicNutri2.png" alt="Logo GlicNutri" class="logo" />
+    </div>
+    <form class="form-container" onsubmit="fazerLogin(event)">
+        <div class="form-field">
+            <input type="email" id="email" placeholder=" " required>
+            <label for="email"><i class="fas fa-envelope"></i> Email</label>
+        </div>
+
+        <div class="form-field">
+            <input type="password" id="senha" placeholder=" " required>
+            <label for="senha"><i class="fas fa-lock"></i> Senha</label>
+        </div>
+
+        <div class="form-buttons">
+            <button type="submit"><i class="fas fa-sign-in-alt"></i> Entrar</button>
+            <a href="cadastro.html" class="button-link btn-secondary"><i class="fas fa-user-plus"></i> Não tem conta? Cadastre-se</a>
+        </div>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 GlicNutri • Todos os direitos reservados</p>
+  </footer>
+
+  <script>
+    function fazerLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      const senha = document.getElementById("senha").value;
+      const usuario = JSON.parse(localStorage.getItem("usuarioGlicNutri"));
+
+      if (usuario && usuario.email === email && usuario.senha === senha) {
+        sessionStorage.setItem("usuarioLogado", "true");
+        // Opcional: Salvar nome do usuário para personalizar a tela principal
+        sessionStorage.setItem("nomeUsuarioLogado", usuario.nome);
+        window.location.href = "glicnutri.html";
+      } else {
+        alert("Email ou senha inválidos.");
+      }
+    }
+  </script>
+</body>
+</html>

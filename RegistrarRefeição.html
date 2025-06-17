@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registrar Refeição - GlicNutri</title>
+  <link rel="stylesheet" href="style.css" /> <link rel="icon" href="GlicNutri2.png" type="image/png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script>
+    // Dark mode toggle (se mantido)
+    document.addEventListener("DOMContentLoaded", () => {
+      const darkMode = localStorage.getItem("darkMode") === "true";
+      document.body.classList.toggle("dark", darkMode);
+    });
+  </script>
+</head>
+<body>
+  <header class="header-voltar">
+    <a href="glicnutri.html" class="btn-voltar-header" title="Voltar">
+      <i class="fas fa-arrow-left"></i>
+    </a>
+    <h1 class="header-title">Registrar Refeição</h1>
+  </header>
+
+  <main>
+    <form class="form-container" onsubmit="event.preventDefault(); salvarRefeicao();">
+      <h2><i class="fas fa-utensils" style="color: #27ae60;"></i> Detalhes da sua Refeição</h2>
+
+      <div class="form-field">
+        <select id="tipoRefeicao" required>
+            <option value="" disabled selected>Qual refeição?</option>
+            <option value="Café da Manhã">Café da Manhã</option>
+            <option value="Lanche da Manhã">Lanche da Manhã</option>
+            <option value="Almoço">Almoço</option>
+            <option value="Lanche da Tarde">Lanche da Tarde</option>
+            <option value="Jantar">Jantar</option>
+            <option value="Ceia">Ceia</option>
+            <option value="Outra">Outra</option>
+        </select>
+        <label for="tipoRefeicao"><i class="fas fa-concierge-bell"></i> Tipo de Refeição</label>
+      </div>
+
+
+      <div class="form-field">
+        <textarea id="refeicaoDescricao" placeholder=" " rows="4" required></textarea>
+        <label for="refeicaoDescricao"><i class="fas fa-pencil-alt"></i> Descreva os alimentos (ex: arroz, feijão, salada)</label>
+      </div>
+
+      <div class="form-field">
+        <input type="text" id="quantidade" placeholder=" ">
+        <label for="quantidade"><i class="fas fa-balance-scale"></i> Quantidade/Porção (ex: 300g, 1 prato)</label>
+      </div>
+      
+      <div class="form-field">
+        <input type="datetime-local" id="dataHoraRefeicao" required />
+        <label for="dataHoraRefeicao" style="top: -0.7em; left: 0.6em; font-size: 0.8em; color: #5e35b1; background-color: #fff; padding: 0 0.4em; border-radius: 4px;"><i class="far fa-calendar-alt"></i> Data e Hora</label>
+      </div>
+
+      <button type="submit" style="margin-top: 1em;"><i class="fas fa-save"></i> Salvar Refeição</button>
+      <div id="feedbackRefeicao" class="resultado-feedback" style="margin-top:1.5em; display:none;"></div>
+    </form>
+  </main>
+
+  <div class="nav-buttons-vertical">
+    <a href="glicnutri.html" class="button-link"><i class="fas fa-arrow-left"></i> Voltar ao Menu</a>
+  </div>
+
+  <footer>
+     <p>&copy; 2025 GlicNutri • Todos os direitos reservados</p>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Pré-definir data e hora atuais para o campo datetime-local
+        const now = new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset()); // Ajuste para o fuso horário local
+        const dataHoraInput = document.getElementById('dataHoraRefeicao');
+        if (dataHoraInput) {
+            dataHoraInput.value = now.toISOString().slice(0,16);
+        }
+    });
+
+    function salvarRefeicao() {
+      const tipo = document.getElementById("tipoRefeicao").value;
+      const descricao = document.getElementById("refeicaoDescricao").value.trim();
+      const quantidade = document.getElementById("quantidade").value.trim();
+      const dataHoraInput = document.getElementById('dataHoraRefeicao').value;
+      const feedbackDiv = document.getElementById("feedbackRefeicao");
+
+      feedbackDiv.style.display = 'none';
+      feedbackDiv.classList.remove('error');
+
+
+      if (!tipo || !descricao || !dataHoraInput) {
+        feedbackDiv.textContent = "Por favor, preencha o tipo da refeição, descrição e data/hora.";
+        feedbackDiv.classList.add('error');
+        feedbackDiv.style.display = 'block';
+        return;
+      }
+
+      const refeicoes = JSON.parse(localStorage.getItem("refeicoes")) || [];
+
+      refeicoes.push({
+        tipo: tipo, // Usar o tipo selecionado
+        descricao: `${descricao}${quantidade ? ' (' + quantidade + ')' : ''}`,
+        data: new Date(dataHoraInput).toISOString() // Salvar em formato ISO
+      });
+
+      localStorage.setItem("refeicoes", JSON.stringify(refeicoes));
+
+      feedbackDiv.textContent = "Refeição registrada com sucesso!";
+      feedbackDiv.style.display = 'block';
+
+
+      // Limpar campos
+      document.getElementById("tipoRefeicao").value = "";
+      document.getElementById("refeicaoDescricao").value = "";
+      document.getElementById("quantidade").value = "";
+      // Resetar data e hora para o momento atual para o próximo registro
+      const now = new Date();
+      now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+      document.getElementById('dataHoraRefeicao').value = now.toISOString().slice(0,16);
+
+
+      // Opcional: esconder mensagem após alguns segundos
+      setTimeout(() => {
+          feedbackDiv.style.display = 'none';
+      }, 4000);
+    }
+  </script>
+</body>
+</html>

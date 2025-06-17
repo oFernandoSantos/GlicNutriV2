@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registrar Glicemia - GlicNutri</title>
+  <link rel="stylesheet" href="style.css" /> <link rel="icon" href="GlicNutri2.png" type="image/png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <header class="header-voltar">
+    <a href="glicnutri.html" class="btn-voltar-header" title="Voltar">
+      <i class="fas fa-arrow-left"></i>
+    </a>
+    <h1 class="header-title">Registrar Glicemia</h1>
+  </header>
+
+  <main id="conteudo-registrar-glicose">
+    </main>
+
+  <div class="nav-buttons-vertical">
+    <a href="glicnutri.html" class="button-link"><i class="fas fa-arrow-left"></i> Voltar ao Menu</a>
+  </div>
+
+  <footer>
+     <p>&copy; 2025 GlicNutri • Todos os direitos reservados</p>
+  </footer>
+
+  <script>
+    function carregarPaginaRegistroGlicose() {
+      const main = document.getElementById('conteudo-registrar-glicose');
+      if (!main) return;
+
+      main.innerHTML = `
+        <form class="form-container" onsubmit="event.preventDefault(); gerarRecomendacao();">
+          <h2><i class="fas fa-tint" style="color: #e74c3c;"></i> Nova Leitura Glicêmica</h2>
+          <div class="form-field">
+            <select id="tipoGlicemia" required>
+              <option value="" disabled selected>Período da coleta</option>
+			  <option value="Jejum">Jejum</option>
+              <option value="Antes da Refeição">Antes da Refeição</option>
+              <option value="Depois da Refeição">Depois da Refeição (Pós-prandial)</option>
+              <option value="Aleatório">Aleatório / A Qualquer Hora</option>
+            </select>
+             <label for="tipoGlicemia"><i class="far fa-clock"></i> Período</label>
+          </div>
+
+          <div class="form-field">
+            <input type="number" id="valorGlicemia" placeholder=" " required min="10" max="600" />
+            <label for="valorGlicemia"><i class="fas fa-calculator"></i> Valor (mg/dL)</label>
+          </div>
+          
+          <div class="form-field">
+            <input type="datetime-local" id="dataHoraGlicemia" required />
+            <label for="dataHoraGlicemia" style="top: -0.7em; left: 0.6em; font-size: 0.8em; color: #5e35b1; background-color: #fff; padding: 0 0.4em; border-radius: 4px;"><i class="far fa-calendar-alt"></i> Data e Hora</label>
+          </div>
+
+
+          <button type="submit" style="margin-top: 1em;"><i class="fas fa-save"></i> Registrar e Ver Recomendação</button>
+          <div id="recomendacaoUnica" class="resultado-feedback" style="margin-top:1.5em; display:none;"></div>
+        </form>
+      `;
+      // Pré-definir data e hora atuais para o campo datetime-local
+      const now = new Date();
+      now.setMinutes(now.getMinutes() - now.getTimezoneOffset()); // Ajuste para o fuso horário local
+      document.getElementById('dataHoraGlicemia').value = now.toISOString().slice(0,16);
+    }
+
+    function gerarRecomendacao() {
+      const tipo = document.getElementById('tipoGlicemia').value;
+      const valor = parseFloat(document.getElementById('valorGlicemia').value);
+      const dataHoraInput = document.getElementById('dataHoraGlicemia').value;
+      const resposta = document.getElementById('recomendacaoUnica');
+
+      resposta.style.display = 'none'; // Esconde a mensagem anterior
+      resposta.classList.remove('error');
+
+
+      if (!tipo) {
+        resposta.textContent = 'Selecione o período da coleta.';
+        resposta.classList.add('error');
+        resposta.style.display = 'block';
+        return;
+      }
+
+      if (isNaN(valor) || valor < 10 || valor > 600) {
+        resposta.textContent = 'Digite um valor de glicemia válido (entre 10 e 600 mg/dL).';
+        resposta.classList.add('error');
+        resposta.style.display = 'block';
+        return;
+      }
+      if (!dataHoraInput) {
+        resposta.textContent = 'Selecione a data e hora da medição.';
+        resposta.classList.add('error');
+        resposta.style.display = 'block';
+        return;
+      }
+
+
+      let texto = '';
+      let statusClass = ''; // Para estilizar a mensagem de forma diferente
+
+      // Valores de referência podem variar. Estes são exemplos gerais.
+      if (valor < 70) {
+        texto = 'Glicemia BAIXA! 📉 Consuma carboidrato de rápida absorção (ex: 15g de açúcar, mel ou suco). Monitore e, se não melhorar, procure ajuda médica.';
+        statusClass = 'error'; // Usar classe de erro para hipoglicemia
+      } else if (tipo === "Jejum" && valor > 99 && valor <= 125) {
+        texto = 'Glicemia de jejum ALTERADA. 🤔 Recomenda-se acompanhamento médico para avaliação.';
+      } else if (tipo === "Jejum" && valor > 125) {
+        texto = 'Glicemia de jejum ALTA! 📈 Consulte seu médico. Mantenha a hidratação.';
+      } else if (tipo === "Depois da Refeição" && valor > 180) { // Geralmente 2h após
+        texto = 'Glicemia pós-refeição ALTA! 📈 Hidrate-se e considere uma caminhada leve, se possível. Verifique seu plano alimentar.';
+      } else if (valor > 180) { // Para outros casos "Aleatório" ou "Antes da Refeição"
+         texto = 'Glicemia ALTA! 📈 Hidrate-se, caminhe e evite carboidratos simples. Consulte seu médico se persistir.';
+      }
+      else {
+        texto = 'Glicemia ESTÁVEL. ✅ Continue com seu plano alimentar e hábitos saudáveis!';
+      }
+
+      resposta.textContent = texto;
+      if (statusClass) {
+          resposta.classList.add(statusClass);
+      }
+      resposta.style.display = 'block';
+
+
+      const registro = {
+        tipo: tipo,
+        valor: valor,
+        recomendacao: texto,
+        data: new Date(dataHoraInput).toISOString() // Salvar em formato ISO para melhor ordenação/processamento
+      };
+
+      const registros = JSON.parse(localStorage.getItem('glicemias')) || [];
+      registros.push(registro);
+      localStorage.setItem('glicemias', JSON.stringify(registros));
+
+      // Limpar campos após registro bem-sucedido (opcional)
+      // document.getElementById('valorGlicemia').value = '';
+      // document.getElementById('tipoGlicemia').value = '';
+    }
+
+    window.onload = carregarPaginaRegistroGlicose;
+  </script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meu Diário - GlicNutri</title>
+  <link rel="stylesheet" href="style.css"> <link rel="icon" href="GlicNutri2.png" type="image/png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script>
+    // Dark mode toggle (se mantido)
+    document.addEventListener("DOMContentLoaded", () => {
+      const darkMode = localStorage.getItem("darkMode") === "true";
+      document.body.classList.toggle("dark", darkMode);
+    });
+  </script>
+</head>
+<body>
+  <header class="header-voltar">
+    <a href="glicnutri.html" class="btn-voltar-header" title="Voltar">
+      <i class="fas fa-arrow-left"></i>
+    </a>
+    <h1 class="header-title">Meu Diário de Registros</h1>
+  </header>
+
+  <main>
+    <div class="table-container">
+      <table id="tabelaDiario" class="modern-table">
+        <thead>
+          <tr>
+            <th><i class="fas fa-tag"></i> Tipo</th>
+            <th><i class="fas fa-info-circle"></i> Valor / Descrição</th>
+            <th><i class="fas fa-comment-medical"></i> Recomendação</th>
+            <th><i class="far fa-calendar-alt"></i> Data/Hora</th>
+          </tr>
+        </thead>
+        <tbody>
+          </tbody>
+      </table>
+    </div>
+  </main>
+
+  <div class="nav-buttons-vertical" style="gap: 0.5em;"> <button onclick="limparDados()" class="btn-secondary" style="background-color: #e74c3c;"><i class="fas fa-trash-alt"></i> Limpar Todos os Registros</button>
+    <a href="glicnutri.html" class="button-link"><i class="fas fa-arrow-left"></i> Voltar ao Menu</a>
+  </div>
+
+  <footer>
+     <p>&copy; 2025 GlicNutri • Todos os direitos reservados</p>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const glicemias = JSON.parse(localStorage.getItem('glicemias')) || [];
+        const refeicoes = JSON.parse(localStorage.getItem('refeicoes')) || [];
+
+        const todosRegistros = [
+        ...glicemias.map(item => ({
+            tipo: `<span class="tag-glicemia">${item.tipo}</span>`, // Adicionando classes para estilo futuro
+            valor: item.valor + ' mg/dL',
+            recomendacao: item.recomendacao || '-', // Garantir que haja um valor
+            data: new Date(item.data).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+        })),
+        ...refeicoes.map(item => ({
+            tipo: '<span class="tag-refeicao">Refeição</span>',
+            valor: item.descricao,
+            recomendacao: '-',
+            data: new Date(item.data).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+        }))
+        ];
+
+        todosRegistros.sort((a, b) => new Date(b.dataOrig) - new Date(a.dataOrig) || new Date(converterDataParaISO(b.data)) - new Date(converterDataParaISO(a.data)) );
+        // Necessário para ordenar corretamente datas no formato DD/MM/AAAA HH:MM:SS
+
+        const tbody = document.querySelector('#tabelaDiario tbody');
+        tbody.innerHTML = ''; // Limpar antes de adicionar
+
+        if (todosRegistros.length === 0) {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td colspan="4" style="text-align:center; padding: 20px; color: #777;">Nenhum registro encontrado ainda. Comece registrando suas glicemias ou refeições!</td>`;
+            tbody.appendChild(tr);
+        } else {
+            todosRegistros.forEach(reg => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${reg.tipo}</td>
+                    <td>${reg.valor}</td>
+                    <td>${reg.recomendacao}</td>
+                    <td>${reg.data}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+    });
+
+    function converterDataParaISO(dataStringPtBr) {
+        // Converte "DD/MM/AAAA, HH:MM:SS" para "AAAA-MM-DDTHH:MM:SS" para ordenação
+        const partes = dataStringPtBr.match(/(\d{2})\/(\d{2})\/(\d{4}), (\d{2}):(\d{2}):(\d{2})/);
+        if (partes) {
+            return `${partes[3]}-${partes[2]}-${partes[1]}T${partes[4]}:${partes[5]}:${partes[6]}`;
+        }
+        return dataStringPtBr; // Retorna original se o formato não corresponder
+    }
+
+
+    function limparDados() {
+      if (confirm('ATENÇÃO!\nDeseja realmente apagar TODOS os seus registros do diário?\nEsta ação não poderá ser desfeita.')) {
+        localStorage.removeItem('glicemias');
+        localStorage.removeItem('refeicoes');
+        // Força recarregamento para atualizar a tabela
+        const tbody = document.querySelector('#tabelaDiario tbody');
+        tbody.innerHTML = `<td colspan="4" style="text-align:center; padding: 20px; color: #777;">Registros limpos.</td>`;
+        alert("Todos os registros foram apagados.");
+        // Poderia recarregar a página: location.reload();
+      }
+    }
+  </script>
+</body>
+</html>

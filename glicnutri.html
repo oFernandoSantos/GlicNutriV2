@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GlicNutri</title>
+    <link rel="stylesheet" href="style.css" /> <link rel="stylesheet" href="glicnutri-specific.css" /> <link rel="icon" href="GlicNutri2.png" type="image/png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <h1 class="app-title">GlicNutri</h1>
+            <button class="hamburger-menu" id="hamburgerMenu" aria-label="Abrir menu" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+        <button class="close-menu" id="closeMenu" aria-label="Fechar menu">
+            <i class="fas fa-times"></i>
+        </button>
+		<br>
+        <ul>
+		<li><a href="MeuPerfil.html"><i class="fas fa-user"></i> Meu Perfil</a></li>
+            <li><a href="RegistrarGlicose.html"><i class="fas fa-chart-line"></i> Registrar Glicemia</a></li>
+            <li><a href="Libre.html"><i class="fas fa-mobile-alt"></i> Glicemia via Libre</a></li>
+            <li><a href="RegistrarRefeição.html"><i class="fas fa-utensils"></i> Registrar Refeição</a></li>
+            <li><a href="MeuDiario.html"><i class="fas fa-book"></i> Meu Diário</a></li>
+            
+            <li><a href="ConteudoEducativo.html"><i class="fas fa-graduation-cap"></i> Conteúdo Educativo</a></li>
+            <li><a href="SuporteChat.html"><i class="fas fa-comment-dots"></i> Suporte / Chat</a></li>
+            <li><a href="Libre.html" class="nav-pro-link"><i class="fas fa-star"></i> GlicNutri Pro</a></li>
+            <li><a href="login.html" class="nav-logout-link"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+        </ul>
+    </nav>
+    <div class="overlay" id="overlay"></div>
+
+
+    <main class="glicnutri-main-content">
+        <div class="welcome-section">
+            <h2>Bem-vindo(a) de volta!</h2>
+            <p>Pronto para gerenciar sua saúde com GlicNutri?</p>
+        </div>
+
+        <div class="quick-actions">
+            <a href="RegistrarGlicose.html" class="quick-action-card">
+                <i class="fas fa-tint"></i>
+                <span>Registrar Glicemia</span>
+            </a>
+            <a href="RegistrarRefeição.html" class="quick-action-card">
+                <i class="fas fa-apple-alt"></i>
+                <span>Registrar Refeição</span>
+            </a>
+            <a href="MeuDiario.html" class="quick-action-card">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Ver Diário</span>
+            </a>
+        </div>
+
+        <div class="logo-container">
+            <img src="GlicNutri2.png" alt="Logo GlicNutri" class="logo" />
+        </div>
+    </main>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const hamburgerMenu = document.getElementById('hamburgerMenu');
+    const mobileNav = document.getElementById('mobileNav');
+    const closeMenu = document.getElementById('closeMenu');
+    const overlay = document.getElementById('overlay');
+    const navLinks = mobileNav.querySelectorAll('a');
+
+    function openMenu() {
+        mobileNav.classList.add('active');
+        overlay.classList.add('active');
+        hamburgerMenu.setAttribute('aria-expanded', 'true');
+        mobileNav.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeSideMenu() {
+        mobileNav.classList.remove('active');
+        overlay.classList.remove('active');
+        hamburgerMenu.setAttribute('aria-expanded', 'false');
+        mobileNav.setAttribute('aria-hidden', 'true');
+    }
+
+    if (hamburgerMenu) {
+        hamburgerMenu.addEventListener('click', openMenu);
+    }
+
+    if (closeMenu) {
+        closeMenu.addEventListener('click', closeSideMenu);
+    }
+
+    if (overlay) {
+        overlay.addEventListener('click', closeSideMenu);
+    }
+
+    // Fechar o menu ao clicar em um link (útil para SPAs ou navegação na mesma página)
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            // Se for um link para outra página, o menu fechará com o carregamento da página.
+            // Se for uma âncora na mesma página ou ação JS, pode ser útil fechar explicitamente.
+            if (mobileNav.classList.contains('active')) {
+                 // Atraso pequeno para permitir a navegação antes de fechar, se necessário
+                setTimeout(closeSideMenu, 100);
+            }
+        });
+    });
+
+    // Opcional: Fechar o menu com a tecla Escape
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && mobileNav.classList.contains('active')) {
+            closeSideMenu();
+        }
+    });
+});
+</script>
+
+
+    <footer>
+        <p>&copy; 2025 GlicNutri • Todos os direitos reservados</p>
+    </footer>
+
+    <script src="menu.js"></script> </body>
+</html>
