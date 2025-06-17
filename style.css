@@ -620,21 +620,3 @@ table.modern-table { width: 100%; border-collapse: separate; border-spacing: 0; 
     margin-bottom: 0.75em;
     line-height: 1.3;
 }
-element.style {
-    align-self: flex-start;
-    background-color: white;
-    padding: 0.8em 1em;
-    border-radius: 12px;
-}
-element.style {
-    background: white;
-    padding: 1em;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    max-height: 300px;
-    overflow-y: auto;
-    display: flex
-;
-    flex-direction: column;
-    gap: 0.8em;
-}
