@@ -44,7 +44,7 @@
      <p>&copy; 2025 GlicNutri • Todos os direitos reservados</p>
   </footer>
 
-  <script>
+ <script>
     function enviarMensagem() {
       const input = document.getElementById("userInput");
       const texto = input.value.trim();
@@ -54,7 +54,7 @@
 
       const msgUser = document.createElement("div");
       msgUser.style.alignSelf = "flex-end";
-      msgUser.style.backgroundColor = black;
+      msgUser.style.backgroundColor = "#e0e0ff";
       msgUser.style.padding = "0.8em 1em";
       msgUser.style.borderRadius = "12px";
       msgUser.textContent = texto;
@@ -66,7 +66,7 @@
         const resposta = gerarRespostaSimples(texto);
         const msgBot = document.createElement("div");
         msgBot.style.alignSelf = "flex-start";
-        msgBot.style.backgroundColor = black;
+        msgBot.style.backgroundColor = "#f3f3f3";
         msgBot.style.padding = "0.8em 1em";
         msgBot.style.borderRadius = "12px";
         msgBot.textContent = resposta;
