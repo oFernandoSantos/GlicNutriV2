@@ -20,7 +20,7 @@
 	
   <main>
     <div style="width: 100%; max-width: 600px;">
-      <div id="chatBox" style="background: white; padding: 1em; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-height: 300px; overflow-y: auto; display: flex; flex-direction: column; gap: 0.8em;">
+      <div id="chatBox" style="background: black; padding: 1em; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-height: 300px; overflow-y: auto; display: flex; flex-direction: column; gap: 0.8em;">
         <div style="align-self: flex-start; background-color: white; padding: 0.8em 1em; border-radius: 12px;">
           Olá! 👋 Sou o NutriBot. Como posso te ajudar hoje?
         </div>
@@ -54,7 +54,7 @@
 
       const msgUser = document.createElement("div");
       msgUser.style.alignSelf = "flex-end";
-      msgUser.style.backgroundColor = black;
+      msgUser.style.backgroundColor = "#e0e0ff";
       msgUser.style.padding = "0.8em 1em";
       msgUser.style.borderRadius = "12px";
       msgUser.textContent = texto;
@@ -74,7 +74,7 @@
         chatBox.scrollTop = chatBox.scrollHeight;
       }, 800);
     }
- 
+
     function gerarRespostaSimples(texto) {
       const lower = texto.toLowerCase();
       if (lower.includes("glicemia")) return "Lembre-se de medir sua glicemia antes e depois das refeições.";
@@ -83,7 +83,6 @@
       if (lower.includes("insulina")) return "Consulte seu endocrinologista para ajustes de insulina.";
       return "Obrigado pela sua mensagem! Em breve um nutricionista real poderá responder também. 😊";
     }
-	
   </script>
 </body>
 </html>
