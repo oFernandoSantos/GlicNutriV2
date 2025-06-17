@@ -231,7 +231,7 @@ button:active, .button-link:active {
     border: 1px solid #333333; /* Borda escura */
     border-radius: 10px;
     font-size: 1rem;
-    color: #333333; /* Texto claro */
+    color: white; /* Texto claro */
     background-color: #1e1e1e; /* Superfície de input escura */
     transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
