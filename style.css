@@ -1,634 +1,662 @@
-/* === Resets Básicos e Padrões Globais === */
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+/* O CSS que você forneceu */
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-body {
-    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: white;
-    color: #000000;
-    line-height: 1.65;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    font-size: 16px;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #000000;
+            color: #e0e0e0;
+            line-height: 1.65;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
 
-/* === Tipografia === */
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 700;
-    color: #f5f5f5;
-    margin-bottom: 0.75em;
-    line-height: 1.3;
-}
+        /* === Tipografia === */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            color: #f5f5f5;
+            margin-bottom: 0.75em;
+            line-height: 1.3;
+        }
 
-h1 { font-size: 2.4rem; }
-h2 { font-size: 1.9rem; }
-h3 { font-size: 1.5rem; }
+        h1 { font-size: 2.4rem; }
+        h2 { font-size: 1.9rem; }
+        h3 { font-size: 1.5rem; }
 
-p {
-    margin-bottom: 1.1em;
-    color: #c0c0c0;
-}
+        p {
+            margin-bottom: 1.1em;
+            color: #c0c0c0;
+        }
 
-a {
-    color: #BB86FC;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out;
-}
+        a {
+            color: #BB86FC;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+        }
 
-a:hover {
-    color: #A76CF3;
-    opacity: 0.85;
-}
+        a:hover {
+            color: #A76CF3;
+            opacity: 0.85;
+        }
 
-/* === Layout e Contêineres === */
-.container {
-    width: 90%;
-    max-width: 1120px;
-    margin: 0 auto;
-    padding: 25px 0;
-}
+        /* === Layout e Contêineres === */
+        .container {
+            width: 90%;
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 25px 0;
+        }
 
-main {
-    flex-grow: 1;
-    padding: 25px 15px;
-    width: 100%;
-    max-width: 720px;
-    margin: 1em auto;
-}
+        main {
+            flex-grow: 1;
+            padding: 25px 15px;
+            width: 100%;
+            max-width: 720px;
+            margin: 1em auto;
+        }
 
-/* === Cabeçalho Padrão (para login, cadastro) === */
-header.simple-header {
-    background: #0d0d0d;
-    color: #f0f0f0;
-    padding: 1.75em 0;
-    text-align: center;
-    box-shadow: 0 3px 10px rgba(255,255,255,0.05);
-}
+        /* === Cabeçalho Padrão (para login, cadastro) === */
+        header.simple-header {
+            background: #0d0d0d;
+            color: #f0f0f0;
+            padding: 1.75em 0;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(255,255,255,0.05);
+        }
 
-header.simple-header h1 {
-    color: #f5f5f5;
-    margin: 0;
-    font-size: 1.9rem;
-    font-weight: 600;
-}
-
-
-/* === CABEÇALHO COM BOTÃO VOLTAR (NOVA ABORDAGEM: POSICIONAMENTO ABSOLUTO) === */
-.header-voltar {
-    background: linear-gradient(145deg, #7F00FF, #E100FF);
-    padding: 0.9em 15px;
-    width: 100%;
-    display: flex; /* Mantido para alinhar o botão de voltar */
-    align-items: center;
-    justify-content: flex-start; /* Alinha o botão à esquerda */
-    box-shadow: 0 2px 8px rgba(187, 134, 252, 0.15);
-    position: relative; /* ESSENCIAL: Torna-se a referência para o título */
-    height: 70px; /* Altura fixa para ajudar na centralização vertical */
-    z-index: 100;
-}
-
-/* Título do Header (Método de Centralização Absoluta) */
-.header-voltar .header-title {
-    position: absolute; /* Remove o título do fluxo normal do layout */
-    left: 50%;          /* Posiciona o início do elemento no meio da tela */
-    top: 50%;           /* Posiciona o topo do elemento no meio da altura */
-    transform: translate(-50%, -50%); /* Puxa o elemento de volta pela metade de seu tamanho */
-    
-    /* Propriedades de estilo */
-    color: #f0f0f0;
-    font-size: 1.4rem;
-    font-weight: 500;
-    margin: 0;
-    padding: 0; /* Remove paddings que possam atrapalhar */
-    width: 80%; /* Garante que o texto não sobreponha os cantos em telas muito pequenas */
-    text-align: center; /* Centraliza o texto dentro do elemento */
-}
-
-/* Botão de Voltar */
-.btn-voltar-header {
-    background: transparent;
-    border: none;
-    color: #f0f0f0;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    transition: background-color 0.2s ease;
-    z-index: 2; /* Garante que o botão fique acima do título caso haja sobreposição */
-}
-
-.btn-voltar-header i { 
-    font-size: 1.3em; 
-}
-
-.btn-voltar-header:hover { 
-    background-color: rgba(255, 255, 255, 0.1); 
-}
+        header.simple-header h1 {
+            color: #f5f5f5;
+            margin: 0;
+            font-size: 1.9rem;
+            font-weight: 600;
+        }
 
 
-/* === Rodapé === */
-footer {
-    background-color: #0a0a0a;
-    color: #888;
-    text-align: center;
-    padding: 1.75em 0;
-    width: 100%;
-    font-size: 0.9rem;
-    margin-top: auto;
-    border-top: 1px solid #1f1f1f;
-}
+        /* === CABEÇALHO COM BOTÃO VOLTAR (NOVA ABORDAGEM: POSICIONAMENTO ABSOLUTO) === */
+        .header-voltar {
+            background: linear-gradient(145deg, #7F00FF, #E100FF);
+            padding: 0.9em 15px;
+            width: 100%;
+            display: flex; /* Mantido para alinhar o botão de voltar */
+            align-items: center;
+            justify-content: flex-start; /* Alinha o botão à esquerda */
+            box-shadow: 0 2px 8px rgba(187, 134, 252, 0.15);
+            position: relative; /* ESSENCIAL: Torna-se a referência para o título */
+            height: 70px; /* Altura fixa para ajudar na centralização vertical */
+            z-index: 100;
+        }
 
-/* === Botões === */
-button, .button-link {
-    background: linear-gradient(145deg, #7F00FF, #E100FF);
-    color: white;
-    border: none;
-    padding: 0.9em 1.8em;
-    border-radius: 30px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 600;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.6em;
-    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
-    box-shadow: 0 4px 12px rgba(98, 0, 234, 0.25), 0 1px 3px rgba(0,0,0,0.1);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
+        /* Título do Header (Método de Centralização Absoluta) */
+        .header-voltar .header-title {
+            position: absolute; /* Remove o título do fluxo normal do layout */
+            left: 50%;          /* Posiciona o início do elemento no meio da tela */
+            top: 50%;           /* Posiciona o topo do elemento no meio da altura */
+            transform: translate(-50%, -50%); /* Puxa o elemento de volta pela metade de seu tamanho */
+            
+            /* Propriedades de estilo */
+            color: #f0f0f0;
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin: 0;
+            padding: 0; /* Remove paddings que possam atrapalhar */
+            width: 80%; /* Garante que o texto não sobreponha os cantos em telas muito pequenas */
+            text-align: center; /* Centraliza o texto dentro do elemento */
+        }
 
-button:hover, .button-link:hover {
-    background: linear-gradient(145deg, #6A00D6, #C700D6);
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 7px 18px rgba(98, 0, 234, 0.3), 0 3px 6px rgba(0,0,0,0.15);
-}
+        /* Botão de Voltar */
+        .btn-voltar-header {
+            background: transparent;
+            border: none;
+            color: #f0f0f0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            transition: background-color 0.2s ease;
+            z-index: 2; /* Garante que o botão fique acima do título caso haja sobreposição */
+        }
 
-button:active, .button-link:active {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(98, 0, 234, 0.25), 0 1px 3px rgba(0,0,0,0.1);
-}
+        .btn-voltar-header i { 
+            font-size: 1.3em; 
+        }
 
-.nav-buttons-vertical {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.2em;
-    width: 100%;
-    max-width: 380px;
-    margin: 2.5em auto 1.5em auto;
-}
-.nav-buttons-vertical button,
-.nav-buttons-vertical a.button-link { width: 100%; }
-
-/* === Formulários === */
-.form-container {
-    background: #121212;
-    padding: 2.2em 2.8em;
-    border-radius: 16px;
-    box-shadow: 0 8px 25px rgba(255,255,255,0.03);
-    width: 100%;
-    max-width: 480px;
-    margin: 2.5em auto;
-    border: 1px solid #1f1f1f;
-}
-
-.form-container h2 {
-    text-align: center;
-    margin-bottom: 1.5em;
-    background: linear-gradient(145deg, #7F00FF, #E100FF);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
-    font-weight: 700;
-}
-
-.form-field {
-    position: relative;
-    margin-bottom: 2em;
-}
-
-.form-field input,
-.form-field select,
-.form-field textarea {
-    width: 100%;
-    padding: 1.1em 0.9em;
-    border: 1px solid #333333;
-    border-radius: 10px;
-    font-size: 1rem;
-    color: white;
-    background-color: #1e1e1e;
-    transition: border-color 0.25s ease, box-shadow 0.25s ease;
-}
-
-.form-field input::placeholder,
-.form-field textarea::placeholder {
-    color: #777;
-}
-
-.form-field input:focus,
-.form-field select:focus,
-.form-field textarea:focus {
-    border-color: #BB86FC;
-    box-shadow: 0 0 0 4px rgba(187, 134, 252, 0.15);
-    outline: none;
-    background-color: #222222;
-}
-
-.form-field label {
-    position: absolute;
-    top: 50%;
-    left: 1em;
-    transform: translateY(-50%);
-    font-size: 1rem;
-    color: #aaa;
-    pointer-events: none;
-    transition: 0.2s ease all;
-    background-color: #1e1e1e;
-    padding: 0 0.4em;
-}
-
-.form-field input:focus + label,
-.form-field input:not(:placeholder-shown) + label,
-.form-field textarea:focus + label,
-.form-field textarea:not(:placeholder-shown) + label,
-.form-field select:focus + label,
-.form-field select:valid + label {
-    top: -0.75em;
-    left: 0.75em;
-    font-size: 0.8rem;
-    color: #BB86FC;
-    background-color: #121212;
-    font-weight: 500;
-}
-.form-field textarea { min-height: 110px; resize: vertical; }
-.form-field select option[value=""][disabled] { color: #888; }
-
-.form-buttons { display: flex; flex-direction: column; gap: 1.2em; margin-top: 2.2em; }
-.form-buttons button, .form-buttons a.button-link { width: 100%; }
-
-/* === Logo === */
-.logo-container { text-align: center; margin-top: 2em; margin-bottom: 1.5em; }
-.logo { max-width: 160px; height: auto; }
-
-/* === Tabelas Modernas === */
-.table-container {
-    overflow-x: auto;
-    background-color: #121212;
-    border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(255,255,255,0.03);
-    margin: 2em 0;
-    border: 1px solid #1f1f1f;
-}
-table.modern-table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 0.95rem; }
-.modern-table th, .modern-table td {
-    padding: 14px 18px;
-    text-align: left;
-    border-bottom: 1px solid #2a2a2a;
-}
-.modern-table th {
-    background-color: #1a1a1a;
-    color: #f0f0f0;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    letter-spacing: 0.5px;
-}
-.modern-table tbody tr:hover { background-color: #1f1f1f; }
-.modern-table tbody tr:last-child td { border-bottom: none; }
-.modern-table td:first-child, .modern-table th:first-child { border-top-left-radius: 12px; border-bottom-left-radius: 12px; }
-.modern-table td:last-child, .modern-table th:last-child { border-top-right-radius: 12px; border-bottom-right-radius: 12px; }
+        .btn-voltar-header:hover { 
+            background-color: rgba(255, 255, 255, 0.1); 
+        }
 
 
-/* === Cards === */
-.card {
-    background: #121212;
-    border-radius: 12px;
-    box-shadow: 0 5px 18px rgba(255,255,255,0.03);
-    padding: 1.75em;
-    margin-bottom: 1.75em;
-    transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
-    border: 1px solid #1f1f1f;
-}
-.card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(255,255,255,0.05);
-}
-.card h3 { color: #BB86FC; margin-top: 0; font-weight: 700; }
-.card p { color: #c0c0c0; }
+        /* === Rodapé === */
+        footer {
+            background-color: #0a0a0a;
+            color: #888;
+            text-align: center;
+            padding: 1.75em 0;
+            width: 100%;
+            font-size: 0.9rem;
+            margin-top: auto;
+            border-top: 1px solid #1f1f1f;
+        }
 
-/* === Perfil Específico === */
-.perfil-container-card {
-    background: #121212;
-    padding: 2.5em;
-    border-radius: 16px;
-    box-shadow: 0 8px 25px rgba(255,255,255,0.03);
-    max-width: 520px;
-    margin: 2.5em auto;
-    border: 1px solid #1f1f1f;
-}
-.perfil-header { display: flex; flex-direction: column; align-items: center; margin-bottom: 2.2em; }
-.perfil-inicial {
-    width: 85px; height: 85px; border-radius: 50%;
-    background: linear-gradient(145deg, #7F00FF, #E100FF);
-    color: white; font-size: 2.8rem; font-weight: bold;
-    display: flex; align-items: center; justify-content: center;
-    margin-bottom: 0.8em; box-shadow: 0 5px 15px rgba(187, 134, 252, 0.2);
-}
-.perfil-header h2 { margin: 0; color: #f5f5f5; font-size: 1.9rem; }
-.perfil-dados { display: flex; flex-direction: column; gap: 1.2em; }
-.perfil-item {
-    background: #1e1e1e;
-    padding: 1em 1.3em; border-radius: 10px; font-size: 1rem;
-    display: flex; justify-content: space-between; align-items: center;
-    border-left: 5px solid #BB86FC;
-}
-.perfil-item span:first-child { font-weight: 500; color: #ccc; }
-.perfil-item span:last-child { font-weight: 400; color: #e0e0e0; }
+        /* === Botões === */
+        button, .button-link {
+            background: linear-gradient(145deg, #7F00FF, #E100FF);
+            color: white;
+            border: none;
+            padding: 0.9em 1.8em;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6em;
+            transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 12px rgba(98, 0, 234, 0.25), 0 1px 3px rgba(0,0,0,0.1);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
-/* === Conteúdo Educativo === */
-.educativo-container { padding: 1.2em 0; }
-.educativo-titulo-main { text-align: center; color: #BB86FC; margin-bottom: 0.6em; }
-.educativo-intro { text-align: center; font-size: 1.1rem; color: #c0c0c0; margin-bottom: 2.2em; max-width: 620px; margin-left: auto; margin-right: auto; }
-.educativo-card { border-left: 5px solid #BB86FC; }
-.educativo-mais { margin-top: 2.8em; text-align: center; font-weight: 500; color: #b0b0b0; font-style: italic; }
-.educativo-videos { margin-top: 3.3em; }
-.educativo-videos h2 { text-align: center; color: #f5f5f5; margin-bottom: 1.7em; }
-.video-box { margin-bottom: 2.2em; background: #121212; padding: 18px; border-radius: 10px; box-shadow: 0 4px 12px rgba(255,255,255,0.02); border: 1px solid #1f1f1f;}
-.video-box h4 { color: #BB86FC; margin-bottom: 0.8em; font-weight: 700; }
-.video-box iframe { width: 100%; min-height: 320px; border: none; border-radius: 8px; }
+        button:hover, .button-link:hover {
+            background: linear-gradient(145deg, #6A00D6, #C700D6);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 7px 18px rgba(98, 0, 234, 0.3), 0 3px 6px rgba(0,0,0,0.15);
+        }
 
-/* Resultado de Ações */
-.resultado-feedback {
-    font-size: 1rem; margin-top: 1.7em;
-    padding: 0.9em 1.3em; border-radius: 10px;
-    text-align: center;
-    background: #03DAC5;
-    border-left: 5px solid #01A299;
-    color: #000000;
-}
-.resultado-feedback.error {
-    background: #CF6679;
-    border-left-color: #B00020;
-    color: #000000;
-}
+        button:active, .button-link:active {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(98, 0, 234, 0.25), 0 1px 3px rgba(0,0,0,0.1);
+        }
 
+        .nav-buttons-vertical {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.2em;
+            width: 100%;
+            max-width: 380px;
+            margin: 2.5em auto 1.5em auto;
+        }
+        .nav-buttons-vertical button,
+        .nav-buttons-vertical a.button-link { width: 100%; }
 
-/* === Cabeçalho Principal (Estilo GlicNutri como padrão) === */
-.main-header {
-    background: #0a0a0a;
-    color: #f0f0f0;
-    padding: 0.9em 15px;
-    box-shadow: 0 3px 10px rgba(255,255,255,0.04);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
+        /* === Formulários === */
+        .form-container {
+            background: #121212;
+            padding: 2.2em 2.8em;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(255,255,255,0.03);
+            width: 100%;
+            max-width: 480px;
+            margin: 2.5em auto;
+            border: 1px solid #1f1f1f;
+        }
 
-.main-header .header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-}
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 1.5em;
+            background: linear-gradient(145deg, #7F00FF, #E100FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            font-weight: 700;
+        }
 
-.main-header .app-title {
-    margin: 0;
-    font-size: 1.7rem;
-    font-weight: 700;
-    color: #f0f0f0;
-    letter-spacing: 0.5px;
-}
+        .form-field {
+            position: relative;
+            margin-bottom: 2em;
+        }
 
-/* === Menu Hambúrguer === */
-.hamburger-menu, .close-menu {
-    background: transparent;
-    border: none;
-    color: #f0f0f0;
-    font-size: 1.7rem;
-    cursor: pointer;
-    padding: 0.5em;
-}
-.close-menu {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    font-size: 1.9rem;
-    color: #e0e0e0;
-}
-.close-menu:hover {
-    color: #ffffff;
-}
+        .form-field input,
+        .form-field select,
+        .form-field textarea {
+            width: 100%;
+            padding: 1.1em 0.9em;
+            border: 1px solid #333333;
+            border-radius: 10px;
+            font-size: 1rem;
+            color: white;
+            background-color: #1e1e1e;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+        }
 
-.mobile-nav {
-    position: fixed;
-    top: 0;
-    right: -300px;
-    width: 280px;
-    height: 100%;
-    background-color: #000000;
-    box-shadow: -4px 0 20px rgba(187, 134, 252, 0.1);
-    padding: 55px 0 20px 0;
-    transition: right 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
-    z-index: 1001;
-    overflow-y: auto;
-    border-left: 1px solid #1c1c1c;
-}
+        .form-field input::placeholder,
+        .form-field textarea::placeholder {
+            color: #777;
+        }
 
-.mobile-nav.active { right: 0; }
-.mobile-nav ul { list-style: none; padding: 0; margin: 0; }
-.mobile-nav ul li a {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 14px 28px;
-    color: #c0c0c0;
-    text-decoration: none;
-    font-size: 1.0rem;
-    font-weight: 500;
-    transition: background-color 0.2s ease, color 0.2s ease;
-    border-bottom: 1px solid #1a1a1a;
-}
-.mobile-nav ul li:last-child a { border-bottom: none; }
-.mobile-nav ul li a:hover {
-    background: linear-gradient(145deg, #7F00FF, #E100FF);
-    color: #000000;
-}
-.mobile-nav ul li a i {
-    width: 22px;
-    text-align: center;
-    font-size: 1.15em;
-    color: #888;
-    transition: color 0.2s ease;
-}
-.mobile-nav ul li a:hover i { color: #000000; }
-.mobile-nav ul li a.nav-pro-link:hover { color: #000000 !important; }
-.mobile-nav ul li a.nav-pro-link:hover i { color: #000000 !important; }
-.nav-pro-link { margin-top: 20px; color: #02f5bc !important; }
-.nav-pro-link i { color: #02f5bc !important; }
-.nav-logout-link { margin-top: 20px; color: red !important; }
-.nav-logout-link i { color: red !important; }
+        .form-field input:focus,
+        .form-field select:focus,
+        .form-field textarea:focus {
+            border-color: #BB86FC;
+            box-shadow: 0 0 0 4px rgba(187, 134, 252, 0.15);
+            outline: none;
+            background-color: #222222;
+        }
 
-.mobile-nav ul li a.nav-logout-link:hover i { color: #000000 !important; }
-.mobile-nav ul li a.nav-logout-link:hover { color: #000000 !important; }
-.overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background-color: rgba(0, 0, 0, 0.75);
-    z-index: 999; opacity: 0; visibility: hidden;
-    transition: opacity 0.35s ease-in-out, visibility 0.35s ease-in-out;
-}
-.overlay.active { opacity: 1; visibility: visible; }
+        .form-field label {
+            position: absolute;
+            top: 50%;
+            left: 1em;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            color: #aaa;
+            pointer-events: none;
+            transition: 0.2s ease all;
+            background-color: #1e1e1e;
+            padding: 0 0.4em;
+        }
 
-/* === Conteúdo Principal Específico (Ex: GlicNutri) === */
-.glicnutri-main-content { padding-top: 2.5em; text-align: center; }
-.welcome-section h2 {
-    text-align: center;
-    font-weight: 700;
-    background: linear-gradient(145deg, #7F00FF, #E100FF);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
-    margin-bottom: 0.75em;
-    line-height: 1.3;
-}
-.welcome-section p { font-size: 1.15rem; color: #c0c0c0; margin-bottom: 2.5em; }
+        .form-field input:focus + label,
+        .form-field input:not(:placeholder-shown) + label,
+        .form-field textarea:focus + label,
+        .form-field textarea:not(:placeholder-shown) + label,
+        .form-field select:focus + label,
+        .form-field select:valid + label {
+            top: -0.75em;
+            left: 0.75em;
+            font-size: 0.8rem;
+            color: #BB86FC;
+            background-color: #121212;
+            font-weight: 500;
+        }
+        .form-field textarea { min-height: 110px; resize: vertical; }
+        .form-field select option[value=""][disabled] { color: #888; }
 
-/* === Quick Actions (Estilo GlicNutri Dark como padrão) === */
-.quick-actions {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-bottom: 3em;
-}
+        .form-buttons { display: flex; flex-direction: column; gap: 1.2em; margin-top: 2.2em; }
+        .form-buttons button, .form-buttons a.button-link { width: 100%; }
 
-.quick-action-card {
-    background: linear-gradient(145deg, #7F00FF, #E100FF);
-    color: white;
-    border: none;
-    padding: 0.9em 1.8em;
-    border-radius: 30px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 600;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.6em;
-    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
-    box-shadow: 0 4px 12px rgba(98, 0, 234, 0.25), 0 1px 3px rgba(0, 0, 0, 0.1);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
+        /* === Logo === */
+        .logo-container { text-align: center; margin-top: 2em; margin-bottom: 1.5em; }
+        .logo { max-width: 160px; height: auto; }
+
+        /* === Tabelas Modernas === */
+        .table-container {
+            overflow-x: auto;
+            background-color: #121212;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(255,255,255,0.03);
+            margin: 2em 0;
+            border: 1px solid #1f1f1f;
+        }
+        table.modern-table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 0.95rem; }
+        .modern-table th, .modern-table td {
+            padding: 14px 18px;
+            text-align: left;
+            border-bottom: 1px solid #2a2a2a;
+        }
+        .modern-table th {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+        .modern-table tbody tr:hover { background-color: #1f1f1f; }
+        .modern-table tbody tr:last-child td { border-bottom: none; }
+        .modern-table td:first-child, .modern-table th:first-child { border-top-left-radius: 12px; border-bottom-left-radius: 12px; }
+        .modern-table td:last-child, .modern-table th:last-child { border-top-right-radius: 12px; border-bottom-right-radius: 12px; }
 
 
-.quick-action-card i {
-    font-size: 2.4rem;
-    color: #BB86FC;
-    margin-bottom: 0.6em;
-    transition: color 0.25s ease;
-}
+        /* === Cards === */
+        .card {
+            background: #121212;
+            border-radius: 12px;
+            box-shadow: 0 5px 18px rgba(255,255,255,0.03);
+            padding: 1.75em;
+            margin-bottom: 1.75em;
+            transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+            border: 1px solid #1f1f1f;
+            /* Adicionado para os cards de plano ficarem lado a lado */
+            flex: 1; /* Permite que os cards cresçam e encolham */
+            min-width: 280px; /* Garante que não fiquem muito pequenos */
+            max-width: 48%; /* Para duas colunas em telas maiores */
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(255,255,255,0.05);
+        }
+        .card h3 { color: #BB86FC; margin-top: 0; font-weight: 700; }
+        .card p { color: #c0c0c0; margin-bottom: 0.5em; } /* Ajuste de margem para o preço */
+        .card ul { list-style: none; padding: 0; margin-bottom: 1.5em; }
+        .card ul li { color: #e0e0e0; margin-bottom: 0.6em; display: flex; align-items: flex-start; gap: 8px; }
+        .card ul li::before { content: "\2713"; color: #02f5bc; font-weight: bold; margin-top: 2px; } /* Ícone de check */
+        .card .price-main {
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: #BB86FC;
+            margin-top: 0.8em;
+            margin-bottom: 0.2em;
+        }
+        .card .price-secondary {
+            font-size: 0.95rem;
+            color: #a0a0a0;
+            margin-bottom: 0.2em;
+        }
+        .card .savings {
+            font-size: 0.85rem;
+            color: #02f5bc; /* Cor para destaque de economia */
+            font-weight: 600;
+        }
 
-.quick-action-card span {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #e0e0e0;
-    transition: color 0.25s ease;
-}
-
-.quick-action-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 12px 3px rgba(187, 134, 252, 0.45),
-                0 0 20px 5px rgba(187, 134, 252, 0.3);
-}
-
-.quick-action-card:active {
-    background: linear-gradient(145deg, #BB86FC, #A76CF3);
-    color: #000000;
-    transform: translateY(-2px);
-    box-shadow: 0 2px 8px rgba(187, 134, 252, 0.4);
-}
-.quick-action-card:active i,
-.quick-action-card:active span {
-    color: #000000;
-}
+        /* Container para os cards de plano */
+        .plan-cards-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 2.5em;
+        }
 
 
-/* === Responsividade === */
-@media (max-width: 768px) {
-    body { font-size: 15.5px; }
-    h1 { font-size: 2rem; }
-    h2 { font-size: 1.6rem; }
-    h3 { font-size: 1.3rem; }
-    .form-container { padding: 1.8em 1.5em; }
-    main { padding: 20px 12px; margin-top: 0.5em; }
+        /* === Perfil Específico === */
+        .perfil-container-card {
+            background: #121212;
+            padding: 2.5em;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(255,255,255,0.03);
+            max-width: 520px;
+            margin: 2.5em auto;
+            border: 1px solid #1f1f1f;
+        }
+        .perfil-header { display: flex; flex-direction: column; align-items: center; margin-bottom: 2.2em; }
+        .perfil-inicial {
+            width: 85px; height: 85px; border-radius: 50%;
+            background: linear-gradient(145deg, #7F00FF, #E100FF);
+            color: white; font-size: 2.8rem; font-weight: bold;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 0.8em; box-shadow: 0 5px 15px rgba(187, 134, 252, 0.2);
+        }
+        .perfil-header h2 { margin: 0; color: #f5f5f5; font-size: 1.9rem; }
+        .perfil-dados { display: flex; flex-direction: column; gap: 1.2em; }
+        .perfil-item {
+            background: #1e1e1e;
+            padding: 1em 1.3em; border-radius: 10px; font-size: 1rem;
+            display: flex; justify-content: space-between; align-items: center;
+            border-left: 5px solid #BB86FC;
+        }
+        .perfil-item span:first-child { font-weight: 500; color: #ccc; }
+        .perfil-item span:last-child { font-weight: 400; color: #e0e0e0; }
 
-    .quick-action-card {
-        width: calc(50% - 10px);
-    }
-}
+        /* === Conteúdo Educativo === */
+        .educativo-container { padding: 1.2em 0; }
+        .educativo-titulo-main { text-align: center; color: #BB86FC; margin-bottom: 0.6em; }
+        .educativo-intro { text-align: center; font-size: 1.1rem; color: #c0c0c0; margin-bottom: 2.2em; max-width: 620px; margin-left: auto; margin-right: auto; }
+        .educativo-card { border-left: 5px solid #BB86FC; }
+        .educativo-mais { margin-top: 2.8em; text-align: center; font-weight: 500; color: #b0b0b0; font-style: italic; }
+        .educativo-videos { margin-top: 3.3em; }
+        .educativo-videos h2 { text-align: center; color: #f5f5f5; margin-bottom: 1.7em; }
+        .video-box { margin-bottom: 2.2em; background: #121212; padding: 18px; border-radius: 10px; box-shadow: 0 4px 12px rgba(255,255,255,0.02); border: 1px solid #1f1f1f;}
+        .video-box h4 { color: #BB86FC; margin-bottom: 0.8em; font-weight: 700; }
+        .video-box iframe { width: 100%; min-height: 320px; border: none; border-radius: 8px; }
 
-@media (max-width: 600px) {
-    .quick-actions { flex-direction: column; align-items: center; }
-    .quick-action-card { width: 85%; max-width: 320px; padding: 1.5em; }
-}
+        /* Resultado de Ações */
+        .resultado-feedback {
+            font-size: 1rem; margin-top: 1.7em;
+            padding: 0.9em 1.3em; border-radius: 10px;
+            text-align: center;
+            background: #03DAC5;
+            border-left: 5px solid #01A299;
+            color: #000000;
+        }
+        .resultado-feedback.error {
+            background: #CF6679;
+            border-left-color: #B00020;
+            color: #000000;
+        }
 
-@media (max-width: 480px) {
-    body { font-size: 15px; }
-    
-    /* Ajusta o tamanho da fonte do título no mobile */
-    .header-voltar .header-title { 
-        font-size: 1.25rem; 
-    }
-    
-    button, .button-link {
-        padding: 0.8em 1.5em;
-        font-size: 0.9rem;
-        letter-spacing: 0.3px;
-    }
-    .form-container { padding: 1.5em 1.2em; }
-    .main-header .app-title { font-size: 1.5rem; }
-    .hamburger-menu, .close-menu { font-size: 1.5rem; }
-}
 
-.app-title {
-    text-align: center;
-    font-weight: 700;
-    background: linear-gradient(145deg, #7F00FF, #E100FF);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
-    margin-bottom: 0.75em;
-    line-height: 1.3;
-}
-.style {
-    background: white;
-    padding: 1em;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    max-height: 300px;
-    overflow-y: auto;
-    display: flex
-;
-    flex-direction: column;
-    gap: 0.8em;
-}
+        /* === Cabeçalho Principal (Estilo GlicNutri como padrão) === */
+        .main-header {
+            background: #0a0a0a;
+            color: #f0f0f0;
+            padding: 0.9em 15px;
+            box-shadow: 0 3px 10px rgba(255,255,255,0.04);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .main-header .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .main-header .app-title {
+            margin: 0;
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #f0f0f0;
+            letter-spacing: 0.5px;
+        }
+
+        /* === Menu Hambúrguer === */
+        .hamburger-menu, .close-menu {
+            background: transparent;
+            border: none;
+            color: #f0f0f0;
+            font-size: 1.7rem;
+            cursor: pointer;
+            padding: 0.5em;
+        }
+        .close-menu {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            font-size: 1.9rem;
+            color: #e0e0e0;
+        }
+        .close-menu:hover {
+            color: #ffffff;
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100%;
+            background-color: #000000;
+            box-shadow: -4px 0 20px rgba(187, 134, 252, 0.1);
+            padding: 55px 0 20px 0;
+            transition: right 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: 1001;
+            overflow-y: auto;
+            border-left: 1px solid #1c1c1c;
+        }
+
+        .mobile-nav.active { right: 0; }
+        .mobile-nav ul { list-style: none; padding: 0; margin: 0; }
+        .mobile-nav ul li a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 14px 28px;
+            color: #c0c0c0;
+            text-decoration: none;
+            font-size: 1.0rem;
+            font-weight: 500;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            border-bottom: 1px solid #1a1a1a;
+        }
+        .mobile-nav ul li:last-child a { border-bottom: none; }
+        .mobile-nav ul li a:hover {
+            background: linear-gradient(145deg, #7F00FF, #E100FF);
+            color: #000000;
+        }
+        .mobile-nav ul li a i {
+            width: 22px;
+            text-align: center;
+            font-size: 1.15em;
+            color: #888;
+            transition: color 0.2s ease;
+        }
+        .mobile-nav ul li a:hover i { color: #000000; }
+        .mobile-nav ul li a.nav-pro-link:hover { color: #000000 !important; }
+        .mobile-nav ul li a.nav-pro-link:hover i { color: #000000 !important; }
+        .nav-pro-link { margin-top: 20px; color: #02f5bc !important; }
+        .nav-pro-link i { color: #02f5bc !important; }
+        .nav-logout-link { margin-top: 20px; color: red !important; }
+        .nav-logout-link i { color: red !important; }
+
+        .mobile-nav ul li a.nav-logout-link:hover i { color: #000000 !important; }
+        .mobile-nav ul li a.nav-logout-link:hover { color: #000000 !important; }
+        .overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            z-index: 999; opacity: 0; visibility: hidden;
+            transition: opacity 0.35s ease-in-out, visibility 0.35s ease-in-out;
+        }
+        .overlay.active { opacity: 1; visibility: visible; }
+
+        /* === Conteúdo Principal Específico (Ex: GlicNutri) === */
+        .glicnutri-main-content { padding-top: 2.5em; text-align: center; }
+        .welcome-section h2 {
+            text-align: center;
+            font-weight: 700;
+            background: linear-gradient(145deg, #7F00FF, #E100FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            margin-bottom: 0.75em;
+            line-height: 1.3;
+        }
+        .welcome-section p { font-size: 1.15rem; color: #c0c0c0; margin-bottom: 2.5em; }
+
+        /* === Quick Actions (Estilo GlicNutri Dark como padrão) === */
+        .quick-actions {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 3em;
+        }
+
+        .quick-action-card {
+            background: linear-gradient(145deg, #7F00FF, #E100FF);
+            color: white;
+            border: none;
+            padding: 0.9em 1.8em;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6em;
+            transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 12px rgba(98, 0, 234, 0.25), 0 1px 3px rgba(0, 0, 0, 0.1);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+
+        .quick-action-card i {
+            font-size: 2.4rem;
+            color: #BB86FC;
+            margin-bottom: 0.6em;
+            transition: color 0.25s ease;
+        }
+
+        .quick-action-card span {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #e0e0e0;
+            transition: color 0.25s ease;
+        }
+
+        .quick-action-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 12px 3px rgba(187, 134, 252, 0.45),
+                        0 0 20px 5px rgba(187, 134, 252, 0.3);
+        }
+
+        .quick-action-card:active {
+            background: linear-gradient(145deg, #BB86FC, #A76CF3);
+            color: #000000;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(187, 134, 252, 0.4);
+        }
+        .quick-action-card:active i,
+        .quick-action-card:active span {
+            color: #000000;
+        }
+
+
+        /* === Responsividade === */
+        @media (max-width: 768px) {
+            body { font-size: 15.5px; }
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.6rem; }
+            h3 { font-size: 1.3rem; }
+            .form-container { padding: 1.8em 1.5em; }
+            main { padding: 20px 12px; margin-top: 0.5em; }
+
+            .quick-action-card {
+                width: calc(50% - 10px);
+            }
+            .card {
+                max-width: 100%; /* Em telas menores, cada card ocupa a largura total */
+            }
+            .plan-cards-wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .quick-actions { flex-direction: column; align-items: center; }
+            .quick-action-card { width: 85%; max-width: 320px; padding: 1.5em; }
+        }
+
+        @media (max-width: 480px) {
+            body { font-size: 15px; }
+            
+            /* Ajusta o tamanho da fonte do título no mobile */
+            .header-voltar .header-title { 
+                font-size: 1.25rem; 
+            }
+            
+            button, .button-link {
+                padding: 0.8em 1.5em;
+                font-size: 0.9rem;
+                letter-spacing: 0.3px;
+            }
+            .form-container { padding: 1.5em 1.2em; }
+            .main-header .app-title { font-size: 1.5rem; }
+            .hamburger-menu, .close-menu { font-size: 1.5rem; }
+        }
+
+        .app-title {
+            text-align: center;
+            font-weight: 700;
+            background: linear-gradient(145deg, #7F00FF, #E100FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            margin-bottom: 0.75em;
+            line-height: 1.3;
+        }
