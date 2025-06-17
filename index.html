@@ -97,19 +97,14 @@ document.addEventListener('DOMContentLoaded', function () {
         overlay.addEventListener('click', closeSideMenu);
     }
 
-    // Fechar o menu ao clicar em um link (útil para SPAs ou navegação na mesma página)
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
-            // Se for um link para outra página, o menu fechará com o carregamento da página.
-            // Se for uma âncora na mesma página ou ação JS, pode ser útil fechar explicitamente.
             if (mobileNav.classList.contains('active')) {
-                 // Atraso pequeno para permitir a navegação antes de fechar, se necessário
                 setTimeout(closeSideMenu, 100);
             }
         });
     });
 
-    // Opcional: Fechar o menu com a tecla Escape
     document.addEventListener('keydown', function(event) {
         if (event.key === 'Escape' && mobileNav.classList.contains('active')) {
             closeSideMenu();
